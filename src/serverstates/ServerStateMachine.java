@@ -5,6 +5,7 @@ package serverstates;
 
 import java.util.Stack;
 
+import server.Handler;
 import states.State;
 import networking.ObjectListener;
 
@@ -15,9 +16,14 @@ import networking.ObjectListener;
 public class ServerStateMachine implements ObjectListener
 {
     private Stack<ServerState> states;
+    private Handler handle;
     
-    public ServerStateMachine(){
+    public ServerStateMachine(Handler handle){
+        this.handle = handle;
         states = new Stack<ServerState>();
+        states.push(new DefaultServerState(handle));
+        states.peek().onInitialize();
+        states.peek().onBegin();
     }
     
     public void addState(ServerState s){

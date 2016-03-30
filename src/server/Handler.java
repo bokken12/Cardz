@@ -3,6 +3,9 @@
  */
 package server;
 
+import general.Mode;
+
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -31,9 +34,13 @@ public class Handler extends Thread
         {
             in = sock.getInputStream();
             out = sock.getOutputStream();
-            ois = new ObjectInputStream(in);
             oos = new ObjectOutputStream(out);
-            sm = new ServerStateMachine();
+            oos.flush();
+            ois = new ObjectInputStream(in);
+            sm = new ServerStateMachine(this);
+            if(Mode.DEBUG){
+                System.out.println("Successfully initialized handler");
+            }
         }
         catch (IOException e)
         {
@@ -43,20 +50,32 @@ public class Handler extends Thread
     
     @Override
     public void run(){
+        if(Mode.DEBUG){
+            System.out.println("Beginning to read objects");
+        }
         while(true){
             try
             {
                 sm.objectRecieved(ois.readObject());
+                if(Mode.DEBUG){
+                    System.out.println("Read an object");
+                }
             }
             catch (ClassNotFoundException e)
             {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
+                break;
+            }
+            catch(EOFException e){
+                e.printStackTrace();
+                break;
             }
             catch (IOException e)
             {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
+                break;
             }
         }
     }

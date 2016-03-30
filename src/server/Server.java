@@ -1,5 +1,7 @@
 package server;
 
+import general.Mode;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -29,6 +31,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import networking.Networking;
 import commands.Command;
 import commands.CommandLoader;
 import commands.CommandSender;
@@ -36,7 +39,11 @@ import acm.program.ConsoleProgram;
 
 
 public class Server extends ConsoleProgram implements CommandSender{
-	private static final int MEGASERVER_PORT_NUMBER = 5001;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = -7067822051105869L;
+    private static final int MEGASERVER_PORT_NUMBER = 5001;
     private static final String SQLACCOUNT = "bokken12";
     private static final String SQLPASSWORD = "sixkyu";
     private static final String SQLSERVER = "127.0.0.1";
@@ -60,7 +67,7 @@ public class Server extends ConsoleProgram implements CommandSender{
 		CommandLoader.addCommands();
 		try {
 			//socket = new ServerSocket(MEGASERVER_PORT_NUMBER, 100, InetAddress.getByName("MEGASERVER_IP"));
-			socket = new ServerSocket(MEGASERVER_PORT_NUMBER, 100, InetAddress.getByName("127.0.0.1"));
+			socket = new ServerSocket(Networking.PORT, 100, InetAddress.getByName(Networking.HOST));
 		} catch (IOException e) {
 			printError("Error creating server... shutting down...");
 			stopServer();
@@ -87,6 +94,9 @@ public class Server extends ConsoleProgram implements CommandSender{
 		while (!stopping) {
 			try {
 				new Handler(socket.accept()).start();
+				if(Mode.DEBUG){
+				    printInfo("Accepted a connection.");
+				}
 			} catch (IOException e) {
 				printError("Connection failed.");
 			} catch (NullPointerException e){
@@ -100,7 +110,7 @@ public class Server extends ConsoleProgram implements CommandSender{
 		pause(1000);
 		exit();
 	}
-	class Handler extends Thread {
+	/*class Handler extends Thread {
 		private static final String SALT = "2f3b1e45d54d038a7d38383a238e6965";
         private static final String EMAIL_USERNAME = "BestCardGame";
         private static final String EMAIL_PASSWORD = "SoGood";
@@ -115,7 +125,7 @@ public class Server extends ConsoleProgram implements CommandSender{
 		/**
 		 * Constructs a handler thread, squirreling away the socket.
 		 * All the interesting work is done in the run method.
-		 */
+		 *//*
 		public Handler(Socket socket) {
 			this.socket = socket;
 		}
@@ -210,7 +220,7 @@ public class Server extends ConsoleProgram implements CommandSender{
 						} else {
 							out.println("BadLoginUsername");
 							printInfo("Rejecting a login due to nonexistant username.");
-						}*/
+						}*//*
 						out.flush();
 
 
@@ -279,7 +289,7 @@ public class Server extends ConsoleProgram implements CommandSender{
 
 			}
 		}
-	}
+	}*/
 	class CommandListener extends Thread {
 		String currentline = "";
 		public CommandListener(){

@@ -20,6 +20,10 @@ public abstract class State extends JPanel implements ObjectListener
      * 
      */
     private static final long serialVersionUID = -6360153584599762104L;
+    
+    public State(){
+        this.setLayout(null);
+    }
     public abstract void onInitialize();
     
     public abstract void onBegin();

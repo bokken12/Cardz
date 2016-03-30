@@ -3,6 +3,8 @@
  */
 package states;
 
+import general.Mode;
+
 import javax.swing.JLabel;
 
 import messages.Ping;
@@ -65,6 +67,9 @@ public class DefaultState extends State
     public void objectRecieved(Object o)
     {
         if(Pong.class.isAssignableFrom(o.getClass())){
+            if(Mode.DEBUG){
+                System.out.println("Got a pong!");
+            }
             addState(new LoginState());
         }
     }

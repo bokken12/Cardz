@@ -4,6 +4,7 @@
 package networking;
 
 import general.Game;
+import general.Mode;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,10 +31,29 @@ public class Client extends Thread
         try
         {
             sock = new Socket(Networking.HOST, Networking.PORT);
+            if(Mode.DEBUG){
+                System.out.println("Created the socket");
+            }
             in = sock.getInputStream();
+            if(Mode.DEBUG){
+                System.out.println("Got input");
+            }
             out = sock.getOutputStream();
-            ois = new ObjectInputStream(in);
+            if(Mode.DEBUG){
+                System.out.println("Got output");
+            }
             oos = new ObjectOutputStream(out);
+            oos.flush();
+            if(Mode.DEBUG){
+                System.out.println("Got oos");
+            }
+            ois = new ObjectInputStream(in);
+            if(Mode.DEBUG){
+                System.out.println("Got ois");
+            }
+            if(Mode.DEBUG){
+                System.out.println("Initialized connection");
+            }
         }
         catch (UnknownHostException e)
         {
@@ -46,6 +66,9 @@ public class Client extends Thread
     }
     @Override
     public void run(){
+        if(Mode.DEBUG){
+            System.out.println("Beginning to read objects");
+        }
         while(true){
             try
             {

@@ -1,4 +1,5 @@
 package general;
+
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -21,23 +22,46 @@ public class Game extends JFrame
     private Client client;
     private StateMachine sm;
     private static Game game;
-    
-    public Game(){
+
+    public Game()
+    {
         super();
+        if(Mode.DEBUG){
+            System.out.println("Called super constructor");
+        }
         client = new Client();
-        client.start();
+        if(Mode.DEBUG){
+            System.out.println("Created client");
+        }
         sm = new StateMachine();
+        if(Mode.DEBUG){
+            System.out.println("Create sm");
+        }
         add(sm);
+        if(Mode.DEBUG){
+            System.out.println("Added sm");
+        }
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setTitle("Joel's Game");
         setVisible(true);
-        repaint();
     }
-    
-    public static void main(String[] args){
+
+    public void run()
+    {
+        client.start();
+        game.getSm().run();
+    }
+
+    public static void main(String[] args)
+    {
         game = new Game();
+        if (Mode.DEBUG)
+        {
+            System.out.println("Finished creating an instance of game");
+        }
+        game.run();
     }
 
     /**
@@ -49,7 +73,8 @@ public class Game extends JFrame
     }
 
     /**
-     * @param client the client to set
+     * @param client
+     *            the client to set
      */
     public void setClient(Client client)
     {
@@ -65,7 +90,8 @@ public class Game extends JFrame
     }
 
     /**
-     * @param sm the sm to set
+     * @param sm
+     *            the sm to set
      */
     public void setSm(StateMachine sm)
     {
@@ -81,11 +107,12 @@ public class Game extends JFrame
     }
 
     /**
-     * @param game the game to set
+     * @param game
+     *            the game to set
      */
     public static void setGame(Game game)
     {
         Game.game = game;
     }
-    
+
 }
