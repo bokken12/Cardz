@@ -44,8 +44,8 @@ public class Server extends ConsoleProgram implements CommandSender{
      */
     private static final long serialVersionUID = -7067822051105869L;
     private static final int MEGASERVER_PORT_NUMBER = 5001;
-    private static final String SQLACCOUNT = "bokken12";
-    private static final String SQLPASSWORD = "sixkyu";
+    private static final String SQLACCOUNT = "USER";
+    private static final String SQLPASSWORD = "";
     private static final String SQLSERVER = "127.0.0.1";
     private Connection con;
 	private Map<String, String> users = Collections.synchronizedMap(new HashMap<String, String>());

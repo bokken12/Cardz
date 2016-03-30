@@ -104,11 +104,11 @@ public class LoginServerState extends ServerState
                     }
                 } 
                 catch (SQLException e) {
-                    printError("MySQL error logging a player in."); 
+                    printError("MySQL error logging a player in: " + e.getMessage()); 
                 }
                 catch (UnsupportedEncodingException e)
                 {
-                    printError("Error encoding a password.");
+                    printError("Error encoding a password: " + e.getMessage());
                 }
             }
         }
