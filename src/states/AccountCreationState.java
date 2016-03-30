@@ -3,12 +3,22 @@
  */
 package states;
 
+import java.awt.Rectangle;
+
 /**
  * @author joelmanning
  *
  */
 public class AccountCreationState extends State
 {
+
+    /**
+     * @param bounds
+     */
+    public AccountCreationState(Rectangle bounds)
+    {
+        super(bounds);
+    }
 
     /**
      * 

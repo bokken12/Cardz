@@ -3,6 +3,8 @@
  */
 package states;
 
+import java.awt.Rectangle;
+
 import general.Mode;
 
 import javax.swing.JLabel;
@@ -17,9 +19,14 @@ import display.Label;
  */
 public class DefaultState extends State
 {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -2327126081465418680L;
     private JLabel pinging;
     
-    public DefaultState(){
+    public DefaultState(Rectangle bounds){
+        super(bounds);
         pinging = new Label(10, 10, 50, 30, "Pinging");
     }
     /* (non-Javadoc)
@@ -70,7 +77,7 @@ public class DefaultState extends State
             if(Mode.DEBUG){
                 System.out.println("Got a pong!");
             }
-            addState(new LoginState());
+            addState(new LoginState(getBounds()));
         }
     }
 

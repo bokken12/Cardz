@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 import networking.Client;
 import display.Display;
+import display.Label;
 import player.Player;
 import states.StateMachine;
 
@@ -33,18 +34,23 @@ public class Game extends JFrame
         if(Mode.DEBUG){
             System.out.println("Created client");
         }
-        sm = new StateMachine();
+        sm = new StateMachine(0, 0, 500, 500);
         if(Mode.DEBUG){
             System.out.println("Create sm");
         }
-        add(sm);
         if(Mode.DEBUG){
             System.out.println("Added sm");
         }
+        setLayout(null);
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setTitle("Joel's Game");
+        //setResizable(false);
+        //add(new Label(0, -40, 100, 100, "Test"));
+        sm.setBounds(0, 0, 500, 500);
+        add(sm);
+        //sm.add(new Label(0, 0, 100, 100, "Testing"), new Integer(-29999));
         setVisible(true);
     }
 
