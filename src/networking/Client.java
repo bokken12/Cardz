@@ -6,6 +6,7 @@ package networking;
 import general.Game;
 import general.Mode;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -73,14 +74,23 @@ public class Client extends Thread
             try
             {
                 Game.getGame().getSm().objectRecieved(ois.readObject());
+                if(Mode.DEBUG){
+                    System.out.println("Read an object");
+                }
             }
             catch (ClassNotFoundException e)
             {
                 e.printStackTrace();
+                break;
+            }
+            catch(EOFException e){
+                e.printStackTrace();
+                break;
             }
             catch (IOException e)
             {
                 e.printStackTrace();
+                break;
             }
         }
     }

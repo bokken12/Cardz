@@ -47,15 +47,15 @@ public class Server extends ConsoleProgram implements CommandSender{
     private static final String SQLACCOUNT = "bokken12";
     private static final String SQLPASSWORD = "sixkyu";
     private static final String SQLSERVER = "127.0.0.1";
-    Connection con;
-	static Map<String, String> users = Collections.synchronizedMap(new HashMap<String, String>());
-	HashMap<String, Command> commands = new HashMap<String, Command>();
-	HashMap<String, InetAddress> onlineusers = new HashMap<String, InetAddress>();
-	static Server server;
-	ServerSocket socket;
-	CommandListener listener;
-	MessageDigest digester;
-	boolean stopping = false;
+    private Connection con;
+	private Map<String, String> users = Collections.synchronizedMap(new HashMap<String, String>());
+	private HashMap<String, Command> commands = new HashMap<String, Command>();
+	private HashMap<String, InetAddress> onlineusers = new HashMap<String, InetAddress>();
+	public static Server server;
+	private ServerSocket socket;
+	private CommandListener listener;
+	private MessageDigest digester;
+	private boolean stopping = false;
 	public static void main(String[] args){
 		server = new Server();
 		server.start(args);
@@ -110,7 +110,122 @@ public class Server extends ConsoleProgram implements CommandSender{
 		pause(1000);
 		exit();
 	}
-	/*class Handler extends Thread {
+	
+	
+	/**
+     * @return the con
+     */
+    public Connection getCon()
+    {
+        return con;
+    }
+    /**
+     * @param con the con to set
+     */
+    public void setCon(Connection con)
+    {
+        this.con = con;
+    }
+    /**
+     * @return the users
+     */
+    public Map<String, String> getUsers()
+    {
+        return users;
+    }
+    /**
+     * @param users the users to set
+     */
+    public void setUsers(Map<String, String> users)
+    {
+        this.users = users;
+    }
+    /**
+     * @return the commands
+     */
+    public HashMap<String, Command> getCommands()
+    {
+        return commands;
+    }
+    /**
+     * @param commands the commands to set
+     */
+    public void setCommands(HashMap<String, Command> commands)
+    {
+        this.commands = commands;
+    }
+    /**
+     * @return the onlineusers
+     */
+    public HashMap<String, InetAddress> getOnlineusers()
+    {
+        return onlineusers;
+    }
+    /**
+     * @param onlineusers the onlineusers to set
+     */
+    public void setOnlineusers(HashMap<String, InetAddress> onlineusers)
+    {
+        this.onlineusers = onlineusers;
+    }
+    /**
+     * @return the socket
+     */
+    public ServerSocket getSocket()
+    {
+        return socket;
+    }
+    /**
+     * @param socket the socket to set
+     */
+    public void setSocket(ServerSocket socket)
+    {
+        this.socket = socket;
+    }
+    /**
+     * @return the listener
+     */
+    public CommandListener getListener()
+    {
+        return listener;
+    }
+    /**
+     * @param listener the listener to set
+     */
+    public void setListener(CommandListener listener)
+    {
+        this.listener = listener;
+    }
+    /**
+     * @return the digester
+     */
+    public MessageDigest getDigester()
+    {
+        return digester;
+    }
+    /**
+     * @param digester the digester to set
+     */
+    public void setDigester(MessageDigest digester)
+    {
+        this.digester = digester;
+    }
+    /**
+     * @param server the server to set
+     */
+    public static void setServer(Server server)
+    {
+        Server.server = server;
+    }
+    /**
+     * @param stopping the stopping to set
+     */
+    public void setStopping(boolean stopping)
+    {
+        this.stopping = stopping;
+    }
+
+    /*class Handler extends Thread {
 		private static final String SALT = "2f3b1e45d54d038a7d38383a238e6965";
         private static final String EMAIL_USERNAME = "BestCardGame";
         private static final String EMAIL_PASSWORD = "SoGood";

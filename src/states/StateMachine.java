@@ -23,6 +23,7 @@ public class StateMachine extends JLayeredPane implements ObjectListener
     {
         position = -29999;
         states = new Stack<State>();
+        setBounds(x, y, width, height);
     }
 
     public void run()
@@ -61,6 +62,7 @@ public class StateMachine extends JLayeredPane implements ObjectListener
         states.peek().onLeave();
         states.peek().onDestroy();
         remove(states.pop());
+        states.push(s);
         add(s, position - 1);
         s.onInitialize();
         s.onBegin();

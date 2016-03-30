@@ -19,6 +19,6 @@ public class Label extends JLabel
     
     public Label(int x, int y, int width, int height, String message){
         super(message);
-        this.setBounds(x, y, width, height);
+        setBounds(x, y, width, height);
     }
 }

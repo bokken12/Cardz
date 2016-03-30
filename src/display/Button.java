@@ -24,11 +24,11 @@ public class Button extends JButton
     private Color hovering;
     public Button(int x, int y, int width, int height, String initial, Color normal, Color hovering){
         super(initial);
-        this.setBounds(x, y, width, height);
+        setBounds(x, y, width, height);
         this.normal = normal;
         this.hovering = hovering;
-        this.setForeground(normal);
-        this.addMouseListener(new Highlighter());
+        setForeground(normal);
+        addMouseListener(new Highlighter());
     }
     public Button(int x, int y, int width, int height, String initial, Color hovering){
         this(x, y, width, height, initial, Color.BLACK, hovering);

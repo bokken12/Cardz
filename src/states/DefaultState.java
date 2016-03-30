@@ -8,9 +8,11 @@ import java.awt.Rectangle;
 import general.Mode;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import messages.Ping;
 import messages.Pong;
+import display.FixedWidthMessage;
 import display.Label;
 
 /**
@@ -77,6 +79,7 @@ public class DefaultState extends State
             if(Mode.DEBUG){
                 System.out.println("Got a pong!");
             }
+            //FixedWidthMessage.showMessage("I'm gonna switch to login now, bye :)", "Switching", JOptionPane.INFORMATION_MESSAGE, null, 50);
             addState(new LoginState(getBounds()));
         }
     }

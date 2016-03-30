@@ -5,6 +5,7 @@ package serverstates;
 
 import networking.ObjectListener;
 import server.Handler;
+import server.Server;
 
 /**
  * @author joelmanning
@@ -12,7 +13,7 @@ import server.Handler;
  */
 public abstract class ServerState implements ObjectListener
 {
-    private Handler handle;
+    protected Handler handle;
 
     public ServerState(Handler h)
     {
@@ -53,5 +54,13 @@ public abstract class ServerState implements ObjectListener
     protected void removeState()
     {
         handle.getSm().removeState();
+    }
+    
+    protected void printInfo(String string){
+        Server.getServer().printInfo(string);
+    }
+    
+    protected void printError(String string){
+        Server.getServer().printError(string);
     }
 }

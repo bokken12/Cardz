@@ -28,14 +28,14 @@ public class LauncherDisplay extends Display implements ActionListener
     private static final int SPACING = 10;
     private JPanel loginPanel;
     private JPanel accountCreationPanel;
-    private TextArea username;
+    private TextField username;
     private PasswordArea password;
     private Button login;
     private Button toAccountCreation;
-    private TextArea createUsername;
+    private TextField createUsername;
     private PasswordArea createPassword;
     private PasswordArea verifyPassword;
-    private TextArea createEmail;
+    private TextField createEmail;
     private Button createAccount;
     private Button toLogin;
 
@@ -57,7 +57,7 @@ public class LauncherDisplay extends Display implements ActionListener
         int rightPos = (WIDTH + SPACING) / 2;
         int topPos = (HEIGHT - TEXT_HEIGHT - SPACING - TEXT_WIDTH) / 2;
         int bottomPos = (HEIGHT + TEXT_HEIGHT + SPACING - TEXT_WIDTH) / 2;
-        username = new TextArea(leftPos, topPos, TEXT_WIDTH, TEXT_HEIGHT,
+        username = new TextField(leftPos, topPos, TEXT_WIDTH, TEXT_HEIGHT,
                 "Enter Username");
         loginPanel.add(username);
         password = new PasswordArea(rightPos, topPos, TEXT_WIDTH, TEXT_HEIGHT,
@@ -76,9 +76,9 @@ public class LauncherDisplay extends Display implements ActionListener
         topPos = (HEIGHT - TEXT_WIDTH) / 2 - TEXT_HEIGHT - SPACING;
         int midPos = (HEIGHT - TEXT_WIDTH) / 2;
         bottomPos = (HEIGHT - TEXT_WIDTH) / 2 + TEXT_HEIGHT + SPACING;
-        createUsername = new TextArea(leftPos, topPos, TEXT_WIDTH, TEXT_HEIGHT, "Enter Username");
+        createUsername = new TextField(leftPos, topPos, TEXT_WIDTH, TEXT_HEIGHT, "Enter Username");
         accountCreationPanel.add(createUsername);
-        createEmail = new TextArea(rightPos, topPos, TEXT_WIDTH, TEXT_HEIGHT, "Enter Email");
+        createEmail = new TextField(rightPos, topPos, TEXT_WIDTH, TEXT_HEIGHT, "Enter Email");
         accountCreationPanel.add(createEmail);
         createPassword = new PasswordArea(leftPos, midPos, TEXT_WIDTH, TEXT_HEIGHT, "Enter Password");
         accountCreationPanel.add(createPassword);

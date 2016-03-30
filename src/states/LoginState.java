@@ -3,15 +3,32 @@
  */
 package states;
 
+import general.Game;
+
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JPanel;
+
+import messages.Login;
+import display.Button;
+import display.PasswordArea;
+import display.TextField;
 
 /**
  * @author joelmanning
  *
  */
-public class LoginState extends State
+public class LoginState extends State implements ActionListener
 {
-
+    private static final int TEXT_WIDTH = 120;
+    private static final int TEXT_HEIGHT = 30;
+    private static final int SPACING = 10;
+    private TextField username;
+    private PasswordArea password;
+    private Button login;
+    private Button toAccountCreation;
     /**
      * @param bounds
      */
@@ -31,8 +48,23 @@ public class LoginState extends State
     @Override
     public void onInitialize()
     {
-        // TODO Auto-generated method stub
-        
+        int leftPos = Game.WIDTH / 2 - TEXT_WIDTH - SPACING / 2;
+        int rightPos = (Game.WIDTH + SPACING) / 2;
+        int topPos = (Game.HEIGHT - TEXT_HEIGHT - SPACING - TEXT_WIDTH) / 2;
+        int bottomPos = (Game.HEIGHT + TEXT_HEIGHT + SPACING - TEXT_WIDTH) / 2;
+        username = new TextField(leftPos, topPos, TEXT_WIDTH, TEXT_HEIGHT,
+                "Enter Username");
+        add(username);
+        password = new PasswordArea(rightPos, topPos, TEXT_WIDTH, TEXT_HEIGHT,
+                "Enter Password");
+        add(password);
+        login = new Button(leftPos, bottomPos, TEXT_WIDTH, TEXT_WIDTH, "Login");
+        add(login);
+        login.addActionListener(this);
+        toAccountCreation = new Button(rightPos, bottomPos, TEXT_WIDTH,
+                TEXT_WIDTH, "Account Creation");
+        add(toAccountCreation);
+        toAccountCreation.addActionListener(this);
     }
 
     /* (non-Javadoc)
@@ -73,6 +105,20 @@ public class LoginState extends State
     {
         // TODO Auto-generated method stub
         
+    }
+
+    /* (non-Javadoc)
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        if(e.getSource().equals(toAccountCreation)){
+            setState(new AccountCreationState(getBounds()));
+        } else if(e.getSource().equals(login)){
+            String pass = new String(password.getPassword());
+            send(new Login(username.getText(), pass));
+        }
     }
 
 }

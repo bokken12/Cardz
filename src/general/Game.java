@@ -23,6 +23,8 @@ public class Game extends JFrame
     private Client client;
     private StateMachine sm;
     private static Game game;
+    public static final int WIDTH = 500;
+    public static final int HEIGHT = 350;
 
     public Game()
     {
@@ -34,7 +36,7 @@ public class Game extends JFrame
         if(Mode.DEBUG){
             System.out.println("Created client");
         }
-        sm = new StateMachine(0, 0, 500, 500);
+        sm = new StateMachine(0, 0, WIDTH, HEIGHT);
         if(Mode.DEBUG){
             System.out.println("Create sm");
         }
@@ -42,13 +44,13 @@ public class Game extends JFrame
             System.out.println("Added sm");
         }
         setLayout(null);
-        setSize(500, 500);
+        setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setTitle("Joel's Game");
         //setResizable(false);
         //add(new Label(0, -40, 100, 100, "Test"));
-        sm.setBounds(0, 0, 500, 500);
+        //sm.setBounds(0, 0, 500, 500);
         add(sm);
         //sm.add(new Label(0, 0, 100, 100, "Testing"), new Integer(-29999));
         setVisible(true);

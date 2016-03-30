@@ -68,7 +68,7 @@ public class DefaultServerState extends ServerState
                 System.out.println("Got a ping!");
             }
             send(new Pong());
-            //TODO go to loginstate
+            setState(new LoginServerState(handle));
         }
     }
 
