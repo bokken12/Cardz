@@ -9,10 +9,14 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import messages.Login;
+import messages.LoginAccepted;
+import messages.LoginRejected;
 import display.Button;
+import display.FixedWidthMessage;
 import display.PasswordArea;
 import display.TextField;
 
@@ -103,8 +107,11 @@ public class LoginState extends State implements ActionListener
     @Override
     public void objectRecieved(Object o)
     {
-        // TODO Auto-generated method stub
-        
+        if(o instanceof LoginAccepted){
+            System.out.println("I was accepted!");
+        } else if(o instanceof LoginRejected){
+            FixedWidthMessage.showMessage(((LoginRejected) o).getMessage(), "Login Failed", JOptionPane.WARNING_MESSAGE, getWidth()/2);
+        }
     }
 
     /* (non-Javadoc)
