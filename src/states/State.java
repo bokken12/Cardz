@@ -25,14 +25,14 @@ public abstract class State extends JPanel implements ObjectListener
 
     public State(int x, int y, int width, int height)
     {
-        this.setLayout(null);
-        this.setBounds(x, y, width, height);
+        this(new Rectangle(x, y, width, height));
     }
 
     public State(Rectangle bounds)
     {
-        this.setLayout(null);
-        this.setBounds(bounds);
+        setLayout(null);
+        setBounds(bounds);
+        setOpaque(false);
     }
 
     public abstract void onInitialize();

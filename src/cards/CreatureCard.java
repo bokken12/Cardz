@@ -1,5 +1,6 @@
 package cards;
 
+import java.util.List;
 import java.util.Set;
 
 import zones.Zone;
@@ -18,9 +19,11 @@ public class CreatureCard extends Card implements Combatable
     private int toughness;
     private int baseToughness;
     private boolean canAttack;
-    public CreatureCard(int mana, String name, String text, Set<Ability> abilities, int power, int toughness)
+    private List<String> subtypes;
+    public CreatureCard(int mana, String name, String text, Set<Ability> abilities, List<String> subtypes, int power, int toughness)
     {
         super(mana, name, text, abilities);
+        this.subtypes = subtypes;
         this.power = power;
         basePower = power;
         this.toughness = toughness;

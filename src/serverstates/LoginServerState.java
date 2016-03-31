@@ -11,6 +11,7 @@ import java.sql.Statement;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
+import player.PlayerData;
 import networking.Networking;
 import messages.AccountCreation;
 import messages.AccountRejected;
@@ -135,7 +136,7 @@ public class LoginServerState extends ServerState
                         {
                             printInfo("Accepted a login from \""
                                     + login.getUsername() + "\".");
-                            send(new LoginAccepted());
+                            send(new LoginAccepted(new PlayerData()));
                             Server.getServer()
                             .getOnlineusers()
                             .put(login.getUsername(),

@@ -29,7 +29,7 @@ public class StateMachine extends JLayeredPane implements ObjectListener
     public void run()
     {
         states.add(new DefaultState(getBounds()));
-        add(states.peek());
+        add(states.peek(), position, 0);
         position++;
         states.peek().onInitialize();
         states.peek().onBegin();
@@ -38,9 +38,10 @@ public class StateMachine extends JLayeredPane implements ObjectListener
 
     public void addState(State s)
     {
+        System.out.println("Adding a state");
         states.peek().onLeave();
         states.push(s);
-        add(s, position);
+        add(s, position, 0);
         position++;
         s.onInitialize();
         s.onBegin();
@@ -63,7 +64,7 @@ public class StateMachine extends JLayeredPane implements ObjectListener
         states.peek().onDestroy();
         remove(states.pop());
         states.push(s);
-        add(s, position - 1);
+        add(s, position - 1, 0);
         s.onInitialize();
         s.onBegin();
         repaint();

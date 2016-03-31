@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import messages.Login;
 import messages.LoginAccepted;
@@ -108,7 +107,13 @@ public class LoginState extends State implements ActionListener
     public void objectRecieved(Object o)
     {
         if(o instanceof LoginAccepted){
-            System.out.println("I was accepted!");
+            GameState.setData(((LoginAccepted) o).getData());
+            if(GameState.getData() == null){
+                System.out.println("Was null");
+            } else {
+                System.out.println("Was good");
+            }
+            setState(new MenuState(getBounds()));
         } else if(o instanceof LoginRejected){
             FixedWidthMessage.showMessage(((LoginRejected) o).getMessage(), "Login Failed", JOptionPane.WARNING_MESSAGE, getWidth()/2);
         }

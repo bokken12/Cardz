@@ -36,7 +36,7 @@ public class Game extends JFrame
         if(Mode.DEBUG){
             System.out.println("Created client");
         }
-        sm = new StateMachine(0, 0, WIDTH, HEIGHT);
+        sm = new StateMachine(0, 0, WIDTH, HEIGHT - 20);
         if(Mode.DEBUG){
             System.out.println("Create sm");
         }

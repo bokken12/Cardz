@@ -8,11 +8,9 @@ import java.awt.Rectangle;
 import general.Mode;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import messages.Ping;
 import messages.Pong;
-import display.FixedWidthMessage;
 import display.Label;
 
 /**

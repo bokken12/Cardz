@@ -4,70 +4,66 @@
 package states;
 
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import display.Button;
+import player.PlayerData;
 
 /**
  * @author joelmanning
  *
  */
-public class GameState extends State
+public abstract class GameState extends State
 {
-
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7230522136138680053L;
+    protected static PlayerData data;
+    private Button options;
+    private Button friends;
     /**
      * @param bounds
      */
     public GameState(Rectangle bounds)
     {
         super(bounds);
+        BasicListener listener = new BasicListener();
+        options = new Button(getWidth() * 8 / 10, getHeight() * 9 / 10, getWidth() / 5, getHeight() / 10, "Options");
+        add(options);
+        options.addActionListener(listener);
+        friends = new Button(0, getHeight() * 9 / 10, getWidth() / 5, getHeight() / 10, "Friends");
+        add(friends);
+        friends.addActionListener(listener);
     }
-
-    /* (non-Javadoc)
-     * @see states.State#onInitialize()
+    /**
+     * @return the data
      */
-    @Override
-    public void onInitialize()
+    public static PlayerData getData()
     {
-        // TODO Auto-generated method stub
-
+        return data;
     }
-
-    /* (non-Javadoc)
-     * @see states.State#onBegin()
+    /**
+     * @param data the data to set
      */
-    @Override
-    public void onBegin()
+    public static void setData(PlayerData data)
     {
-        // TODO Auto-generated method stub
-
+        GameState.data = data;
     }
+    
+    class BasicListener implements ActionListener {
 
-    /* (non-Javadoc)
-     * @see states.State#onLeave()
-     */
-    @Override
-    public void onLeave()
-    {
-        // TODO Auto-generated method stub
-
+        /* (non-Javadoc)
+         * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+         */
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            if(e.getSource().equals(options)){
+                addState(new OptionsState(getBounds()));
+            }
+        }
+        
     }
-
-    /* (non-Javadoc)
-     * @see states.State#onDestroy()
-     */
-    @Override
-    public void onDestroy()
-    {
-        // TODO Auto-generated method stub
-
-    }
-
-    /* (non-Javadoc)
-     * @see states.State#objectRecieved(java.lang.Object)
-     */
-    @Override
-    public void objectRecieved(Object o)
-    {
-        // TODO Auto-generated method stub
-
-    }
-
 }

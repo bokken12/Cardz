@@ -4,45 +4,40 @@
 package messages;
 
 import java.io.Serializable;
+import java.util.List;
 
-import player.PlayerData;
+import cards.Card;
 
 /**
  * @author joelmanning
  *
  */
-public class LoginAccepted implements Serializable
+public class Play implements Serializable
 {
-
     /**
      * 
      */
-    private static final long serialVersionUID = -8315631926507991369L;
-    
-    private PlayerData data;
-
-    public LoginAccepted(PlayerData data)
+    private static final long serialVersionUID = -2759056915545470153L;
+    private List<Card> deck;
+    public Play(List<Card> deck)
     {
         super();
-        this.data = data;
+        this.deck = deck;
     }
-
     /**
-     * @return the data
+     * @return the deck
      */
-    public PlayerData getData()
+    public List<Card> getDeck()
     {
-        return data;
+        return deck;
     }
-
     /**
-     * @param data the data to set
+     * @param deck the deck to set
      */
-    public void setData(PlayerData data)
+    public void setDeck(List<Card> deck)
     {
-        this.data = data;
+        this.deck = deck;
     }
-
     /* (non-Javadoc)
      * @see java.lang.Object#hashCode()
      */
@@ -51,10 +46,9 @@ public class LoginAccepted implements Serializable
     {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((data == null) ? 0 : data.hashCode());
+        result = prime * result + ((deck == null) ? 0 : deck.hashCode());
         return result;
     }
-
     /* (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
      */
@@ -67,24 +61,23 @@ public class LoginAccepted implements Serializable
             return false;
         if (getClass() != obj.getClass())
             return false;
-        LoginAccepted other = (LoginAccepted) obj;
-        if (data == null)
+        Play other = (Play) obj;
+        if (deck == null)
         {
-            if (other.data != null)
+            if (other.deck != null)
                 return false;
         }
-        else if (!data.equals(other.data))
+        else if (!deck.equals(other.deck))
             return false;
         return true;
     }
-
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString()
     {
-        return "LoginAccepted [data=" + data + "]";
+        return "Play [deck=" + deck + "]";
     }
-
+    
 }
